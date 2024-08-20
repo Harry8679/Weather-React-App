@@ -104,3 +104,10 @@
     text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
+.weather-date {
+    position: absolute;
+    bottom: 22%;
+    font-size: 1.6rem;
+    color: #484569;
+}
+
