@@ -21,6 +21,7 @@
     align-items: center;
     padding: 2rem;
     box-shadow: -3rem 1rem 6rem rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .search {
@@ -80,5 +81,26 @@
     font-size: 1.5rem;
     color: #2f2e57;
     cursor: pointer;
+}
+
+.weather-type {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: #484569;
+}
+
+.temp {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9rem;
+    background-image: linear-gradient(to right, #2f2e57, #605d80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
