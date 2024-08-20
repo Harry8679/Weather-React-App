@@ -34,7 +34,7 @@ const WeatherApp = () => {
             </div>
             <div className="wind">
                 <div className="data-name">Wind</div>
-                <i className="fa-solid fa-droplet"></i>
+                <i className="fa-solid fa-wind"></i>
                 <div className="data">3 km</div>
             </div>
         </div>
