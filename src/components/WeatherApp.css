@@ -111,3 +111,12 @@
     color: #484569;
 }
 
+.weather-data {
+    width: 100%;
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    column-gap: 2rem;
+    padding: 0 2rem;
+}
+
