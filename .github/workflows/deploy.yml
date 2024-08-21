@@ -1,30 +1,29 @@
-name: Deploy Vite App to GitHub Pages
+name: Deploy Vite App
 
 on:
   push:
     branches:
-      - main  # Déclenchement du workflow à chaque push sur la branche principale
+      - master  # ou votre branche principale
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
-        
+        node-version: '16'  # Utilisez la version de Node.js requise par Vite
+
     - name: Install dependencies
       run: npm install
 
     - name: Build project
-      env:
-        VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
       run: npm run build
-      
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
