@@ -21,6 +21,7 @@ const WeatherApp = () => {
     const searchData = await res.json();
     console.log(searchData);
     setData(searchData);
+    setLocation('');
   }
   return (
     <div className='container'>
