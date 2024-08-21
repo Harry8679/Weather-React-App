@@ -59,7 +59,7 @@ const WeatherApp = () => {
             <div className="wind">
                 <div className="data-name">Wind</div>
                 <i className="fa-solid fa-wind"></i>
-                <div className="data">3 km</div>
+                <div className="data">{data.wind ? `${data.wind.speed} km` : null}</div>
             </div>
         </div>
       </div>
