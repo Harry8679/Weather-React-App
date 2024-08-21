@@ -45,7 +45,7 @@ const WeatherApp = () => {
         <div className="weather">
             <img src={sunny} alt="sunny" />
             <div className='weather-type'>Clear</div>
-            <div className="temp">28°C</div>
+            <div className="temp">{data.main ? `${Math.round((data.main.temp - 273))}°C` : null}</div>
         </div>
         <div className="weather-date">
             <p>Fri, 3 May</p>
