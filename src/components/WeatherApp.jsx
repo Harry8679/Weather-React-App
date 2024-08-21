@@ -7,8 +7,14 @@ import { useState } from 'react';
 
 const WeatherApp = () => {
   const [data, setData] = useState({});
-  const api_key = '51253f9dc2b503e4582c22828c3ad670';
+  const [location, setLocation] = useState('');
+  const api_key = 'XXX';
   const city_name = 'Paris';
+
+  const handleInputChange = (e) => {
+    setLocation(e.target.value);
+  };
+
   const search = async () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${api_key}`;
     const res = await fetch(url);
@@ -25,7 +31,7 @@ const WeatherApp = () => {
                 <div className="location">London</div>
             </div>
             <div className="search-bar">
-                <input type="text" placeholder='Enter Location' />
+                <input type="text" placeholder='Enter Location' value={location} onChange={handleInputChange} />
                 <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
             </div>
         </div>
