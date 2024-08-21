@@ -1,6 +1,6 @@
 import './WeatherApp.css';
 import sunny from '../assets/images/sunny.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import cloudy from '../assets/images/sunny.png';
 // import rainy from '../assets/images/sunny.png';
 // import snowy from '../assets/images/sunny.png';
@@ -11,11 +11,23 @@ const WeatherApp = () => {
   const api_key = 'XXX';
 //   const city_name = 'Paris';
 
-  const handleInputChange = (e) => {
-    setLocation(e.target.value);
-  };
+    useEffect(() => {
+        const fetchWeather = async () => {
+            const defaultLocation = 'Libreville';    
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&appid=${api_key}`;
+            const res = await fetch(url);
+            const defaultData = await res.json();
+            setData(defaultData);
+        };
 
-  const search = async () => {
+        fetchWeather();
+    }, []);
+
+    const handleInputChange = (e) => {
+    setLocation(e.target.value);
+    };
+
+    const search = async () => {
     if (location.trim() === '') {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
         const res = await fetch(url);
@@ -24,7 +36,7 @@ const WeatherApp = () => {
         setData(searchData);
         setLocation('');
     }
-  }
+    }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
