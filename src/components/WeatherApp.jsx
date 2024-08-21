@@ -9,14 +9,14 @@ const WeatherApp = () => {
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
   const api_key = 'XXX';
-  const city_name = 'Paris';
+//   const city_name = 'Paris';
 
   const handleInputChange = (e) => {
     setLocation(e.target.value);
   };
 
   const search = async () => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${api_key}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
     const res = await fetch(url);
     const searchData = await res.json();
     console.log(searchData);
@@ -28,7 +28,7 @@ const WeatherApp = () => {
         <div className="search">
             <div className="search-top">
                 <i className="fa-solid fa-location-dot"></i>
-                <div className="location">London</div>
+                <div className="location">{data.name}</div>
             </div>
             <div className="search-bar">
                 <input type="text" placeholder='Enter Location' value={location} onChange={handleInputChange} />
