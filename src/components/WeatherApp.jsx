@@ -16,12 +16,14 @@ const WeatherApp = () => {
   };
 
   const search = async () => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
-    const res = await fetch(url);
-    const searchData = await res.json();
-    console.log(searchData);
-    setData(searchData);
-    setLocation('');
+    if (location.trim() === '') {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
+        const res = await fetch(url);
+        const searchData = await res.json();
+        console.log(searchData);
+        setData(searchData);
+        setLocation('');
+    }
   }
 
   const handleKeyDown = (e) => {
