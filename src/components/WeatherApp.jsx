@@ -8,7 +8,7 @@ import snowy from '../assets/images/snowy.png';
 const WeatherApp = () => {
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
-  const api_key = 'XXX';
+  const api_key = '51253f9dc2b503e4582c22828c3ad670';
 
     useEffect(() => {
         const fetchDefaultWeather = async () => {
@@ -27,18 +27,17 @@ const WeatherApp = () => {
     };
 
     const search = async () => {
-    if (location.trim() !== '') {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
-        const res = await fetch(url);
-        const searchData = await res.json();
-        if (searchData.code !== 200) {
-            setData({ notFound: true });
-        } else {
-            setData(searchData);
+        if (location.trim() !== '') {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
+            const res = await fetch(url);
+            const searchData = await res.json();
+            if (searchData.cod !== 200) {
+                setData({ notFound: true });
+            } else {
+                setData(searchData);
+            }
             setLocation('');
-            console.log(searchData);
         }
-    }
     }
 
   const handleKeyDown = (e) => {
@@ -95,26 +94,30 @@ const WeatherApp = () => {
                 <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
             </div>
         </div>
-        <div className="weather">
-            <img src={weatherImage} alt="sunny" />
-            <div className='weather-type'>{data.weather ? data.weather[0].main : null}</div>
-            <div className="temp">{data.main ? `${Math.round((data.main.temp - 273))}°C` : null}</div>
-        </div>
-        <div className="weather-date">
-            <p>{formattedDate}</p>
-        </div>
-        <div className="weather-data">
-            <div className="humidity">
-                <div className="data-name">Humidity</div>
-                <i className="fa-solid fa-droplet"></i>
-                <div className="data">{data.main ? `${data.main.humidity}%` : null}</div>
+        {data.notFound ? (<div className='not-found'>
+            Not Found 😭
+        </div>) : <>
+            <div className="weather">
+                <img src={weatherImage} alt="sunny" />
+                <div className='weather-type'>{data.weather ? data.weather[0].main : null}</div>
+                <div className="temp">{data.main ? `${Math.round((data.main.temp - 273))}°C` : null}</div>
             </div>
-            <div className="wind">
-                <div className="data-name">Wind</div>
-                <i className="fa-solid fa-wind"></i>
-                <div className="data">{data.wind ? `${data.wind.speed} km` : null}</div>
+            <div className="weather-date">
+                <p>{formattedDate}</p>
             </div>
-        </div>
+            <div className="weather-data">
+                <div className="humidity">
+                    <div className="data-name">Humidity</div>
+                    <i className="fa-solid fa-droplet"></i>
+                    <div className="data">{data.main ? `${data.main.humidity}%` : null}</div>
+                </div>
+                <div className="wind">
+                    <div className="data-name">Wind</div>
+                    <i className="fa-solid fa-wind"></i>
+                    <div className="data">{data.wind ? `${data.wind.speed} km` : null}</div>
+                </div>
+            </div>
+        </>}
       </div>
     </div>
   )
