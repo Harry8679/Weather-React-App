@@ -68,7 +68,7 @@ const WeatherApp = () => {
 
   return (
     <div className='container' style={{ backgroundImage }}>
-      <div className="weather-app">
+      <div className="weather-app" style={{ backgroundImage: backgroundImage && backgroundImage.replace ? backgroundImage.replace('to right', 'to top') : null }}>
         <div className="search">
             <div className="search-top">
                 <i className="fa-solid fa-location-dot"></i>
