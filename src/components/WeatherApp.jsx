@@ -31,9 +31,13 @@ const WeatherApp = () => {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
         const res = await fetch(url);
         const searchData = await res.json();
-        console.log(searchData);
-        setData(searchData);
-        setLocation('');
+        if (searchData.code !== 200) {
+            setData({ notFound: true });
+        } else {
+            setData(searchData);
+            setLocation('');
+            console.log(searchData);
+        }
     }
     }
 
