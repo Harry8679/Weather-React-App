@@ -1,10 +1,21 @@
 import './WeatherApp.css';
 import sunny from '../assets/images/sunny.png';
+import { useState } from 'react';
 // import cloudy from '../assets/images/sunny.png';
 // import rainy from '../assets/images/sunny.png';
 // import snowy from '../assets/images/sunny.png';
 
 const WeatherApp = () => {
+  const [data, setData] = useState({});
+  const api_key = '51253f9dc2b503e4582c22828c3ad670';
+  const city_name = 'Paris';
+  const search = async () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${api_key}`;
+    const res = await fetch(url);
+    const searchData = await res.json();
+    console.log(searchData);
+    setData(searchData);
+  }
   return (
     <div className='container'>
       <div className="weather-app">
@@ -15,7 +26,7 @@ const WeatherApp = () => {
             </div>
             <div className="search-bar">
                 <input type="text" placeholder='Enter Location' />
-                <i className="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
             </div>
         </div>
         <div className="weather">
