@@ -4,19 +4,23 @@ import sunny from '../assets/images/sunny.png';
 import cloudy from '../assets/images/cloudy.png';
 import rainy from '../assets/images/rainy.png';
 import snowy from '../assets/images/snowy.png';
+import loadingGif from '../assets/images/loading.gif';
 
 const WeatherApp = () => {
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
-  const api_key = '51253f9dc2b503e4582c22828c3ad670';
+  const [loading, setLoading] = useState(false);
+  const api_key = import.meta.env.VITE_WEATHER_API_KEY;
 
     useEffect(() => {
         const fetchDefaultWeather = async () => {
+            setLoading(true);
             const defaultLocation = 'Libreville';    
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&appid=${api_key}`;
             const res = await fetch(url);
             const defaultData = await res.json();
             setData(defaultData);
+            setLoading(false);
         };
 
         fetchDefaultWeather();
@@ -35,8 +39,9 @@ const WeatherApp = () => {
                 setData({ notFound: true });
             } else {
                 setData(searchData);
+                setLocation('');
             }
-            setLocation('');
+            setLoading(false);
         }
     }
 
@@ -94,7 +99,7 @@ const WeatherApp = () => {
                 <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
             </div>
         </div>
-        {data.notFound ? (<div className='not-found'>
+        {loading ? (<img className='loader' src={loadingGif} alt='loading' />) : data.notFound ? (<div className='not-found'>
             Not Found 😭
         </div>) : <>
             <div className="weather">

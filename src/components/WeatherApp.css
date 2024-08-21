@@ -155,3 +155,8 @@
     margin-top: 5rem;
     text-shadow: -0.3rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
+
+.loader {
+    width: 5rem;
+    margin-top: 10rem;
+}
