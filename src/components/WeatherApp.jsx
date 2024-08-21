@@ -23,6 +23,12 @@ const WeatherApp = () => {
     setData(searchData);
     setLocation('');
   }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+        search();
+    }
+  }
   return (
     <div className='container'>
       <div className="weather-app">
@@ -32,7 +38,7 @@ const WeatherApp = () => {
                 <div className="location">{data.name}</div>
             </div>
             <div className="search-bar">
-                <input type="text" placeholder='Enter Location' value={location} onChange={handleInputChange} />
+                <input type="text" placeholder='Enter Location' value={location} onChange={handleInputChange} onKeyDown={handleKeyDown} />
                 <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
             </div>
         </div>
